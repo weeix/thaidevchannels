@@ -1,22 +1,22 @@
+---
+import { SITE_DESCRIPTION, SITE_NAME } from "astro:env/server";
+import Header from "../components/Header.astro";
+import Container from "../components/Container.astro";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{SITE_NAME}</title>
+  </head>
+  <body>
+    <Container>
+      <Header siteName={SITE_NAME} siteDescription={SITE_DESCRIPTION} />
+      <slot />
+    </Container>
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
