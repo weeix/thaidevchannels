@@ -20,4 +20,7 @@ export default defineConfig({
     },
   },
   integrations: [tailwind()],
+  image: {
+    remotePatterns: [{ protocol: "https" }],
+  },
 });
