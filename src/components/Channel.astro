@@ -5,12 +5,15 @@ import Tag from "./Tag.astro";
 
 interface Props {
   title?: string;
+  url?: string;
   imagePath?: string;
+  tags?: string | string[];
 }
 
-const { title = "Title", imagePath } = Astro.props;
+const { title = "Title", url = "#", imagePath, tags = [] } = Astro.props;
 
 const channelImage = imagePath ? imagePath : placeholderChannelImage;
+const tagsArray = Array.isArray(tags) ? tags : [tags];
 ---
 
 <article class="flex max-w-xl flex-col items-start justify-between">
@@ -18,7 +21,7 @@ const channelImage = imagePath ? imagePath : placeholderChannelImage;
     <h3
       class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600"
     >
-      <a href="#">
+      <a href={url} target="_blank">
         <span class="absolute inset-0"></span>
         {title}
       </a>
@@ -37,9 +40,7 @@ const channelImage = imagePath ? imagePath : placeholderChannelImage;
       </div>
     </div>
   </div>
-  <div class="flex flex-wrap items-center gap-x-4 text-xs">
-    <Tag>tag1</Tag>
-    <Tag>tag2</Tag>
-    <Tag>tag3</Tag>
+  <div class="flex flex-wrap items-center gap-2 text-xs">
+    {tagsArray.map((tag) => <Tag>{tag}</Tag>)}
   </div>
 </article>
